@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>com.opennetcf.ioc.pcl</id>
+        <version>1.0.186.0</version>
+        <title>OpenNETCF IoC for Xamarin Forms</title>
+        <authors>Chris Tacke</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>OpenNETCF's Inversion of Control library down-ported to a PCL assembly</description>
+
+    <dependencies>
+      <group>
+        <dependency id="com.opennetcf.extensions.pcl" version="1.0"/>
+        <dependency id="Xamarin.Forms" version="2.0" />
+      </group>
+    </dependencies>
+    </metadata>
+  <files>
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib/portable45-net45+win8+wpa81" />
+  
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib/Xamarin.iOS10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib/MonoTouch10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib/MonoAndroid10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib/wp80" />
+  </files>
+</package>

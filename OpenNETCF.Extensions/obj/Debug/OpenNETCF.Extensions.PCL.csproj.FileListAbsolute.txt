@@ -1,4 +1,0 @@
-C:\Repos\OpenNETCF\shared\OpenNETCF.Extensions\bin\Debug\OpenNETCF.Extensions.dll
-C:\Repos\OpenNETCF\shared\OpenNETCF.Extensions\bin\Debug\OpenNETCF.Extensions.pdb
-C:\Repos\OpenNETCF\shared\OpenNETCF.Extensions\obj\Debug\OpenNETCF.Extensions.dll
-C:\Repos\OpenNETCF\shared\OpenNETCF.Extensions\obj\Debug\OpenNETCF.Extensions.pdb
