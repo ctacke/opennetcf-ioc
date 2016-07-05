@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>com.opennetcf.extensions.ffx</id>
+        <version>1.0.186.0</version>
+        <title>OpenNETCF Extensions for Xamarin Forms</title>
+        <authors>Chris Tacke</authors>
+        <projectUrl>https://bitbucket.org/opennetcf/shared</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>OpenNETCF's Extensions library</description>
+    </metadata>
+    <files>
+        <file src=".\bin\FFx\Release\OpenNETCF.Extensions.dll" target="lib\OpenNETCF.Extensions.dll" />
+    </files>
+</package>
