@@ -20,8 +20,13 @@ namespace System
         {
             m_inner = inner;
             m_lock = @lock;
+
             // entering lock in constructor
+#if(WindowsCE)
+            if (!Monitor.TryEnter(m_lock))
+#else
             if(!Monitor.TryEnter(m_lock, 100000)) 
+#endif
             {
                 if (Debugger.IsAttached)  Debugger.Break();
 

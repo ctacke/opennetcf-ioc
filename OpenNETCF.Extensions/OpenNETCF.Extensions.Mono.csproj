@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{56CD76B8-1C79-41A4-ACD4-303EB8ABCC3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenNETCF</RootNamespace>
+    <AssemblyName>OpenNETCF.Extensions</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\Publish\SolutionEngine\Debug\Mono\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\Publish\SolutionEngine\Release\Mono\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicBinarySerializer.cs" />
+    <Compile Include="BasicSerializer.cs" />
+    <Compile Include="BasicXmlSerializer.cs" />
+    <Compile Include="BCD.cs" />
+    <Compile Include="BitVector16.cs" />
+    <Compile Include="BitVector32.cs" />
+    <Compile Include="BitVector8.cs" />
+    <Compile Include="BitVectorExtensions.cs" />
+    <Compile Include="ByteExtensions.cs" />
+    <Compile Include="CaselessStringComparer.cs" />
+    <Compile Include="CircularBuffer.cs" />
+    <Compile Include="ControlExtensions.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="DirectoryInfoExtensions.cs" />
+    <Compile Include="DisposableBase.cs" />
+    <Compile Include="DoNotSerializeAttribute.cs" />
+    <Compile Include="EncodingExtensions.cs" />
+    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="EventHandlerExtensions.cs" />
+    <Compile Include="FormsExtensions.cs" />
+    <Compile Include="GenericEventArgs.cs" />
+    <Compile Include="HttpWebRequestExtensions.cs" />
+    <Compile Include="IEnumerableExtensions.cs" />
+    <Compile Include="IEnumStringExtensions.cs" />
+    <Compile Include="LocalDevice.cs" />
+    <Compile Include="LocalDevice_CE.cs" />
+    <Compile Include="LocalDevice_Desktop.cs" />
+    <Compile Include="LocalDevice_Interface.cs" />
+    <Compile Include="LocalDevice_Mono.cs" />
+    <Compile Include="LocalDevice_Monotouch.cs" />
+    <Compile Include="LocalDevice_Phone.cs" />
+    <Compile Include="Metrics.cs" />
+    <Compile Include="MovingAverage.cs" />
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="OrderedDictionary.cs" />
+    <Compile Include="P2PQueueTraceListener.cs" />
+    <Compile Include="P2PQueueTraceWriter.cs" />
+    <Compile Include="Parsers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyComparer.cs" />
+    <Compile Include="REST\CredentialCache_Phone.cs" />
+    <Compile Include="REST\DigestRestConnector.cs" />
+    <Compile Include="REST\RestConnector.cs" />
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Switch.cs" />
+    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="Validation\Validate.cs" />
+    <Compile Include="Validation\Validation.cs" />
+    <Compile Include="Validation\ValidationException.cs" />
+    <Compile Include="Validation\ValidationExtensions.cs" />
+    <Compile Include="WaitHandleExtensions.cs" />
+    <Compile Include="XElementExtensions.cs" />
+    <Compile Include="TcpSocketClient.cs" />
+    <Compile Include="TcpSocketServer.cs" />
+    <Compile Include="SafeCollections\SafeDictionary.cs" />
+    <Compile Include="SafeCollections\SafeEnumerable.cs" />
+    <Compile Include="SafeCollections\SafeEnumerator.cs" />
+    <Compile Include="SafeCollections\SafeList.cs" />
+    <Compile Include="DoubleExtensions.cs" />
+    <Compile Include="ArrayExtensions.cs" />
+    <Compile Include="SafeCollections\SafeQueue.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Folder Include="SafeCollections\" />
+  </ItemGroup>
+</Project>

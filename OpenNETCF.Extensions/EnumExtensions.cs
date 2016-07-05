@@ -27,7 +27,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 
-#if !XAMARIN
+#if !PCL
 namespace System.Text
 {
     public static class EnumExtensions

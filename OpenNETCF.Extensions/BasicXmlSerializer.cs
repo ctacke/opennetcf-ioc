@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Diagnostics;
-#if !XAMARIN
+#if !PCL
 namespace System.Runtime.Serialization
 {
     public class BasicXmlSerializer : BasicSerializer<XElement>

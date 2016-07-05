@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-#if !(WINDOWS_PHONE || ANDROID || MONO || XAMARIN)
+#if !(WINDOWS_PHONE || ANDROID || MONO || PCL)
 namespace System.Windows.Forms
 {
     public static class ControlExtensions

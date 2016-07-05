@@ -140,8 +140,11 @@ namespace OpenNETCF.Web
         private object GetData<T>(string directory, int timeout, Func<HttpWebResponse, T> predicate)
         {
             var start = Environment.TickCount;
+#if WindowsCE
+            if (!Monitor.TryEnter(m_locks)) return null;
+#else
             if (!Monitor.TryEnter(m_locks, 1000)) return null;
-
+#endif
             try
             {
                 var lockDirectory = directory.Replace('/', '\\');
@@ -242,7 +245,7 @@ namespace OpenNETCF.Web
                         LastDataTime = Environment.TickCount - start;
                         LastDataSize = 0;
 
-                        Output.WriteLine("RestConnector Exception in GetData [{0}]: {1}", page, ex.Message);
+                        Output.WriteLine(string.Format("RestConnector Exception in GetData [{0}]: {1}", page, ex.Message));
                         request.Abort();
                         return default(T);
                     }
@@ -350,7 +353,7 @@ namespace OpenNETCF.Web
             }
             catch (Exception ex)
             {
-                Output.WriteLine("RestConnector Exception in SendData (string) [{0}]: {1}", page, ex.Message);
+                Output.WriteLine(string.Format("RestConnector Exception in SendData (string) [{0}]: {1}", page, ex.Message));
                 request.Abort();
                 return string.Empty;
             }
@@ -424,7 +427,7 @@ namespace OpenNETCF.Web
                 }
                 catch (Exception ex)
                 {
-                    Output.WriteLine("RestConnector Exception in SendData (binary) [{0}]: {1}", page, ex.Message);
+                    Output.WriteLine(string.Format("RestConnector Exception in SendData (binary) [{0}]: {1}", page, ex.Message));
                     request.Abort();
                     return string.Empty;
                 }

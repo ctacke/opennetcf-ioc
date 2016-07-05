@@ -211,6 +211,14 @@ namespace OpenNETCF
             }
         }
 
+        public void Enqueue(T[] items, int offset, int count)
+        {
+            for(int i = offset; i < offset + count; i++)
+            {
+                Enqueue(items[i]);
+            }
+        }
+
         /// <summary>
         /// Adds an element to the head of the buffer
         /// </summary>

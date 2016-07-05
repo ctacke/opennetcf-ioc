@@ -1,4 +1,4 @@
-﻿#if !XAMARIN
+﻿#if !PCL
 using OpenNETCF;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿#if (!WindowsCE) && (!WINDOWS_PHONE) && (!XAMARIN)
+﻿#if (!WindowsCE) && (!WINDOWS_PHONE) && (!PCL)
 using System;
 using System.Collections.Generic;
 using System.Linq;

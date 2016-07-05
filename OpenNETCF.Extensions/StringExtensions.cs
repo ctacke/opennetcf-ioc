@@ -132,8 +132,35 @@ namespace System
             return source.ToString().DeserializeFromXml(type);
         }
 #endif
+
+#if!WindowsCE
+        public static string ToCamelCase(this string source)
+        {
+            if (source == null) return null;
+            if (source.Trim().Length == 0) return source;
+
+            var words = source.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var first = true;
+            var sb = new StringBuilder();
+            foreach(var word in words)
+            {
+                if (first)
+                {
+                    sb.Append(char.ToLower(word[0]));
+                    sb.Append(word.Substring(1));
+                    first = false;
+                }
+                else
+                {
+                    sb.Append(char.ToUpper(word[0]));
+                    sb.Append(word.Substring(1));
+                }
+            }
+            return sb.ToString();
+        }
+#endif
     }
-#if !XAMARIN
+#if !PCL
     internal class NamespaceIgnoringReader : XmlTextReader
     {
         public NamespaceIgnoringReader(string data)

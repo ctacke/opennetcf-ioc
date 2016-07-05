@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Xml.Linq;
 
-#if !XAMARIN
+#if !PCL
 namespace System.Runtime.Serialization
 {
     // | ONCF | [version] | [hash] | [type] | data |

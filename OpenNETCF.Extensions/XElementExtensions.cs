@@ -135,7 +135,7 @@ namespace System.Xml.Linq
             }
         }
 
-#if!XAMARIN
+#if!PCL
         public static T XmlDeserialize<T>(this XElement element)
         {
             if (element == null) return default(T);
@@ -143,7 +143,7 @@ namespace System.Xml.Linq
             return (element.ToString()).DeserializeFromXml<T>();
         }
 #endif
-#if !(WINDOWS_PHONE || XAMARIN)
+#if !(WINDOWS_PHONE || PCL)
         public static XmlNode AsXmlNode(this XElement element)
         {
             using (XmlReader xmlReader = element.CreateReader())

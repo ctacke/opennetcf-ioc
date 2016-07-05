@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-#if !XAMARIN
+#if !PCL
 namespace OpenNETCF
 {
     public static class DirectoryInfoExtensions

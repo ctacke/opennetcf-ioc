@@ -105,7 +105,7 @@
     <Compile Include="WorkItemController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenNETCF.Extensions\OpenNETCF.Extensions\OpenNETCF.Extensions.FFx.csproj">
+    <ProjectReference Include="..\OpenNETCF.Extensions\OpenNETCF.Extensions.FFx.csproj">
       <Project>{82d377b5-7a45-439c-becb-7d008e7152b3}</Project>
       <Name>OpenNETCF.Extensions.FFx</Name>
     </ProjectReference>

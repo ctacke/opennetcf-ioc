@@ -406,7 +406,7 @@ namespace OpenNETCF
             return validation;
         }
 
-#if !XAMARIN
+#if !PCL
         public static Validation FileExists(this Validation validation, string filePath)
         {
             if (!File.Exists(filePath))

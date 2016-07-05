@@ -1,1 +1,0 @@
-C:\Repos\OpenNETCF\shared\OpenNETCF.IoC\obj\Debug\OpenNETCF.IoC.FFx.csprojResolveAssemblyReference.cache

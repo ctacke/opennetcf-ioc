@@ -30,9 +30,7 @@ namespace System.Collections.Generic
 
         public IEnumerator<T> GetEnumerator()
         {
-            // instead of returning an unsafe enumerator,
-            // we wrap it into our thread-safe class
-            return new SafeEnumerator<T>(m_list.GetEnumerator(), m_syncRoot);
+            return m_list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

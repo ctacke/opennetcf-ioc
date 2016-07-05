@@ -28,7 +28,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-#if !XAMARIN
+#if !PCL
 
 namespace System
 {
@@ -53,7 +53,15 @@ namespace System
                     return true;
                 }
 
-                foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+                Assembly[] assemblies;
+
+#if(WindowsCE)
+                assemblies = new Assembly[] { Assembly.GetExecutingAssembly() };
+#else
+                assemblies = AppDomain.CurrentDomain.GetAssemblies();
+#endif
+
+                foreach (Assembly a in assemblies)
                 {
                     t = a.GetType(typeName);
                     if (t != null)

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace System.Collections.Specialized
 {
-#if WINDOWS_PHONE || XAMARIN
+#if WINDOWS_PHONE || PCL
     [StructLayout(LayoutKind.Sequential)]
     public struct BitVector32
     {
