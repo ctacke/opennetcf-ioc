@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenNETCF.GA;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -25,16 +26,144 @@ namespace OpenNETCF.IoC
     {
     }
 
+    public class AnalyticsSettings
+    {
+        private static AnalyticsService m_analytics;
+        private bool m_inSession;
+
+        internal bool ScreenTrackingEnabled { get; private set; }
+        internal bool TimingTrackingEnabled { get; private set; }
+
+        public const string DefaultTimingCategory = "Navigation";
+
+        public string TimingCategory { get; set; }
+
+        internal AnalyticsSettings()
+        {
+            // did someone already register analytics? If so, we'll just use that
+            var test = AnalyticsService;
+            TimingCategory = DefaultTimingCategory;
+        }
+
+        private AnalyticsService AnalyticsService
+        {
+            get
+            {
+                if (m_analytics == null)
+                {
+                    var existing = RootWorkItem.Services.Get<AnalyticsService>();
+                    if (existing != null)
+                    {
+                        m_analytics = existing;
+                    }
+                }
+
+                return m_analytics;
+            }
+        }
+
+        public void Register(string trackingID, string appName, Version appVersion = null)
+        {
+            m_analytics = new AnalyticsService(trackingID, applicationName: appName, applicationVersion: appVersion);
+            RootWorkItem.Services.Add(m_analytics);
+        }
+
+        public void EnableScreenTracking()
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+            ScreenTrackingEnabled = true;
+        }
+
+        public void DisableScreenTracking()
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+            ScreenTrackingEnabled = false;
+        }
+
+        public void EnableTimingTracking()
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+            TimingTrackingEnabled = true;
+        }
+
+        public void DisableTimingTracking()
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+            TimingTrackingEnabled = false;
+        }
+
+        public void StartTrackingSession()
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            m_analytics.TrackSessionStart();
+            m_inSession = true;
+        }
+
+        public void StopTrackingSession()
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            m_analytics.TrackSessionEnd();
+            m_inSession = false;
+        }
+
+        internal string GetPageName(Page page)
+        {
+            if (page == null) return null;
+
+            var name = page.Title;
+            if (name.IsNullOrEmpty())
+            {
+                name = page.GetType().Name;
+            }
+
+            // TODO: implement user-overridable name lookups
+
+            return name;
+        }
+
+        private int m_lastPageShownTick;
+
+        internal void LogPageNavigation(string fromPage, string toPage)
+        {
+            if (!ScreenTrackingEnabled) return;
+
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            m_analytics.TrackScreenView(toPage);
+
+            var now = Environment.TickCount;
+            if (!fromPage.IsNullOrEmpty())
+            {
+                if (m_lastPageShownTick != 0)
+                {
+                    if (TimingTrackingEnabled)
+                    {
+                        var delta = now - m_lastPageShownTick;
+                        AnalyticsService.TrackTiming(TimingCategory, fromPage, delta);
+                    }
+                }
+            }
+            m_lastPageShownTick = now;
+        }
+    }
+
     public static class NavigationService
     {
         // this is a viewType : viewModelType lookup table
         private static SafeDictionary<Type, Type> m_index = new SafeDictionary<Type, Type>();
         private static Page m_mainView;
 
+        public static AnalyticsSettings Analytics { get; private set; } = new AnalyticsSettings();
+
         public static Page CurrentView
         {
             get
             {
+                if (m_mainView == null) return null;
+                if (m_mainView.Navigation.NavigationStack.Count == 0) return null;
+
                 var page = m_mainView.Navigation.NavigationStack.Last();
                 if (page is CarouselPage)
                 {
@@ -47,6 +176,8 @@ namespace OpenNETCF.IoC
         public static void SetMainView<TView>(bool wrapInNavigationPage)
             where TView : Page
         {
+            var fromPageName = Analytics.GetPageName(CurrentView);
+
             var view = CreateViewAndViewModel<TView>();
             if (wrapInNavigationPage)
             {
@@ -60,7 +191,11 @@ namespace OpenNETCF.IoC
             {
                 m_mainView = view;
             }
+            
             Application.Current.MainPage = m_mainView;
+
+            var toPageName = Analytics.GetPageName(m_mainView);
+            Analytics.LogPageNavigation(fromPageName, toPageName);
         }
 
         public static void Register<TView, TViewModel>()
@@ -80,7 +215,12 @@ namespace OpenNETCF.IoC
 
         public async static void ShowHome()
         {
+            var fromPageName = Analytics.GetPageName(CurrentView);
+
             await m_mainView.Navigation.PopToRootAsync(true);
+
+            var toPageName = Analytics.GetPageName(CurrentView);
+            Analytics.LogPageNavigation(fromPageName, toPageName);
         }
 
         public async static void NavigateForward<TView>()
@@ -103,18 +243,31 @@ namespace OpenNETCF.IoC
 
         public async static void HideModal(bool animated)
         {
+            var fromPageName = Analytics.GetPageName(CurrentView);
+
             await m_mainView.Navigation.PopModalAsync(animated);
+
+            var toPageName = Analytics.GetPageName(CurrentView);
+            Analytics.LogPageNavigation(fromPageName, toPageName);
         }
 
         public async static void NavigateBack(bool animated)
         {
+            var fromPageName = Analytics.GetPageName(CurrentView);
+
             await m_mainView.Navigation.PopAsync(animated);
+
+            var toPageName = Analytics.GetPageName(CurrentView);
+            Analytics.LogPageNavigation(fromPageName, toPageName);
         }
 
         private async static Task ShowView<TView>(bool animated, bool modal)
             where TView : Page
-        {
+        {            
             var view = CreateViewAndViewModel<TView>();
+
+            var fromViewName = Analytics.GetPageName(CurrentView);
+            var toViewName = Analytics.GetPageName(view);
 
             // now show it
             if (modal)
@@ -125,6 +278,8 @@ namespace OpenNETCF.IoC
             {
                 await m_mainView.Navigation.PushAsync(view, animated);
             }
+
+            Analytics.LogPageNavigation(fromViewName, toViewName);
         }
 
         private static TView CreateViewAndViewModel<TView>()

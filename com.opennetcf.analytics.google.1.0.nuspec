@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>com.opennetcf.analytics.google.pcl</id>
+        <version>1.0.16201.0</version>
+        <title>OpenNETCF's Google Analytics for Xamarin Forms</title>
+        <authors>Chris Tacke</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A simple cross-platform Google Analytics library designed for applications build using Xamarin Forms.</description>
+
+    <dependencies>
+      <group>
+        <dependency id="Xamarin.Forms" version="2.0" />
+      </group>
+    </dependencies>
+    </metadata>
+  <files>
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib/portable45-net45+win8+wpa81" />
+  
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib/Xamarin.iOS10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib/MonoTouch10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib/MonoAndroid10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib/wp80" />
+  </files>
+</package>
