@@ -152,6 +152,26 @@ namespace OpenNETCF.GA
             Track(HitType.Timing, plist);
         }
 
+        public void TrackException(Exception exception, bool isFatal = false)
+        {
+            TrackException(string.Format("{0}: {1}", exception.GetType().Name, exception.Message), isFatal);
+        }
+
+        public void TrackException(string description, bool isFatal = false)
+        {
+            var plist = new List<TrackingParameter>();
+
+            // TODO: do parameter sanity checks
+            plist.Add(new TrackingParameter(ParameterName.ExceptionDescription, description));
+
+            if (isFatal)
+            {
+                plist.Add(new TrackingParameter(ParameterName.ExceptionFatal, "1"));
+            }
+
+            Track(HitType.Exception, plist);
+        }
+
         private void Track(string hitType, List<TrackingParameter> parameters)
         {
             var param = new StringBuilder(1024);

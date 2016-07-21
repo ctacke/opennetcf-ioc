@@ -19,6 +19,7 @@ namespace OpenNETCF.GA
         public const string ApplicationID = "aid";
         public const string ApplicationInstallerID = "aiid";
         public const string SessionControl = "sc";
+
         public const string EventCategory = "ec";
         public const string EventAction = "ea";
         public const string EventLabel = "el";
@@ -28,5 +29,8 @@ namespace OpenNETCF.GA
         public const string TimingVariable = "utv";
         public const string TimingTime = "utt";
         public const string TimingLabel = "utl";
+
+        public const string ExceptionDescription = "exd";
+        public const string ExceptionFatal = "exf";
     }
 }
