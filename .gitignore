@@ -4,3 +4,9 @@ OpenNETCF.Extensions/obj/Debug/OpenNETCF.Extensions.FFx.csproj.FileListAbsolute.
 OpenNETCF.Extensions/obj/
 bin/
 OpenNETCF.Google.Analytics/obj/
+Samples/NavigationSample/NavigationSample.Droid/obj/
+Samples/NavigationSample/NavigationSample.WinPhone/obj/
+Samples/NavigationSample/NavigationSample.Windows/obj/
+Samples/NavigationSample/NavigationSample.iOS/obj/
+Samples/NavigationSample/NavigationSample/obj/
+Samples/NavigationSample/NavigationSample.UWP/obj/
