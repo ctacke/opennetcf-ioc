@@ -11,3 +11,5 @@ Samples/NavigationSample/NavigationSample.iOS/obj/
 Samples/NavigationSample/NavigationSample/obj/
 Samples/NavigationSample/NavigationSample.UWP/obj/
 Examples/NavigationExample/NavigationExample/obj/
+Examples/NavigationExample/NavigationExample.Droid/obj/
+Examples/NavigationExample/NavigationExample.iOS/obj/
