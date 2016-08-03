@@ -392,7 +392,52 @@ namespace OpenNETCF.IoC
             }
         }
 
-        public static Page GetView<TView>()
+        public static Page GetRegisteredView<TViewModel>(this TViewModel viewModel)
+            where TViewModel : IViewModel
+        {
+            var viewModelType = typeof(TViewModel);
+
+            lock (m_index)
+            {
+                var tuple = m_index.FirstOrDefault(v => v.Value == viewModelType);
+
+                if (tuple.Equals(default(KeyValuePair<Type, Type>))) return null;  // not registered - not sure this is a valid compare.  Maybe should check the items in the tuple?
+
+                return RootWorkItem.Services.Get(tuple.Key) as Page;
+            }
+        }
+
+        public static IViewModel GetRegisteredViewModel<TView>(this TView view)
+            where TView : Page
+        {
+            var viewType = typeof(TView);
+            Type viewModelType = null;
+
+            // if the view hasn't been registered with the DI container, add it now
+            if (!RootWorkItem.Services.Contains<TView>())
+            {
+                RootWorkItem.Services.Add(view);
+            }
+
+            lock (m_index)
+            {
+                if (!m_index.ContainsKey(viewType))
+                {
+                    throw new ViewTypeNotRegisteredException(viewType);
+                }
+                viewModelType = m_index[viewType];
+            }
+            var existing = RootWorkItem.Services.Get(viewModelType) as IViewModel;
+
+            if (existing == null)
+            {
+                CreateViewAndViewModel<TView>();
+            }
+
+            return RootWorkItem.Services.Get(viewModelType) as IViewModel;
+        }
+
+        public static TView GetView<TView>()
             where TView : Page
         {
             return CreateViewAndViewModel<TView>();

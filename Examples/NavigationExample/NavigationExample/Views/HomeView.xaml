@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NavigationExample.Views.HomeView">    
+    <StackLayout>
+        <Button Text="[menu]"
+                WidthRequest="100"
+                HorizontalOptions="Start"
+                Command="{Binding MenuClicked}" />
+        <Button Text="Click for Details"
+                HorizontalOptions="Center"
+                Command="{Binding ItemClicked}" />
+    </StackLayout>
+</ContentPage>
