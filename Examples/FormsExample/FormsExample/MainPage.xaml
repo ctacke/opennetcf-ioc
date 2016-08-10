@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FormsExample"
+             xmlns:opennetcf="clr-namespace:OpenNETCF.Controls;assembly=OpenNETCF.Forms"             
+             x:Class="FormsExample.MainPage">
+
+  <StackLayout Orientation="Vertical">
+    <opennetcf:StatusBar Padding="5"
+                         StatusItems="{Binding StatusStrings}"
+                         Command="{Binding StatusClicked}">
+
+    </opennetcf:StatusBar>
+
+    <Label Text="Welcome to OpenNETCF's Xamarin Forms Library!"
+             VerticalOptions="Center"
+             HorizontalOptions="Center" />
+  </StackLayout>
+  
+</ContentPage>

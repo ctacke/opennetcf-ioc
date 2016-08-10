@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>com.opennetcf.xamarin.forms</id>
+        <version>1.0.16221.0</version>
+        <title>OpenNETCF Controls for Xamarin Forms</title>
+        <authors>Chris Tacke</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An array of extended controls for use in Xamarin Forms projects</description>
+
+    <dependencies>
+      <group>
+        <dependency id="com.opennetcf.extensions.pcl" version="1.0"/>
+        <dependency id="Xamarin.Forms" version="2.0" />
+      </group>
+    </dependencies>
+    </metadata>
+  <files>
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.dll" target="lib/portable45-net45+win8+wpa81" />
+  
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.dll" target="lib/Xamarin.iOS10" />
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.iOS.dll" target="lib/Xamarin.iOS10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.dll" target="lib/MonoTouch10" />
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.Android.dll" target="lib/MonoTouch10" />
+
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.dll" target="lib/MonoAndroid10" />
+    <file src=".\bin\PCL\Release\OpenNETCF.Forms.Android.dll" target="lib/MonoAndroid10" />
+
+  </files>
+</package>

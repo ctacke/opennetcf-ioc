@@ -13,3 +13,9 @@ Samples/NavigationSample/NavigationSample.UWP/obj/
 Examples/NavigationExample/NavigationExample/obj/
 Examples/NavigationExample/NavigationExample.Droid/obj/
 Examples/NavigationExample/NavigationExample.iOS/obj/
+Examples/FormsExample/FormsExample.Droid/obj/
+OpenNETCF.Xamarin.Forms/OpenNETCF.Xamarin.Forms.Android/obj/
+Examples/FormsExample/FormsExample.iOS/obj/
+Examples/FormsExample/FormsExample/obj/
+OpenNETCF.Xamarin.Forms/OpenNETCF.Xamarin.Forms.iOS/obj/
+OpenNETCF.Xamarin.Forms/Portable/obj/
