@@ -7,6 +7,7 @@
 
   <StackLayout Orientation="Vertical">
     <opennetcf:StatusBar Padding="5"
+                         IsVisible="{Binding HasNotifications}"
                          StatusItems="{Binding StatusStrings}"
                          Command="{Binding StatusClicked}">
 
@@ -15,6 +16,8 @@
     <Label Text="Welcome to OpenNETCF's Xamarin Forms Library!"
              VerticalOptions="Center"
              HorizontalOptions="Center" />
+    <Button Text="Add Notification"
+            Command="{Binding AddNotificationClicked}"/>
   </StackLayout>
   
 </ContentPage>

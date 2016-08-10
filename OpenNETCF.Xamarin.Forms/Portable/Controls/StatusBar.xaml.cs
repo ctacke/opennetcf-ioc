@@ -13,7 +13,7 @@ namespace OpenNETCF.Controls
     public partial class StatusBar : StackLayout
     {
         public static readonly BindableProperty StatusItemsProperty =
-            BindableProperty.Create("StatusItems", typeof(object[]), typeof(StatusBar));
+            BindableProperty.Create("StatusItems", typeof(object[]), typeof(StatusBar), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty CommandProperty =
             BindableProperty.Create("Command", typeof(ICommand), typeof(StatusBar));
@@ -131,9 +131,25 @@ namespace OpenNETCF.Controls
                         {
                             CountLabel.Text = string.Empty;
                             StatusLabel.Text = string.Empty;
+
+                            CountLabel.IsVisible = false;
+                            PreviousIcon.IsVisible = false;
+                            NextIcon.IsVisible = false;
+                        }
+                        else if (StatusItems.Length == 1)
+                        {
+                            CountLabel.IsVisible = false;
+                            PreviousIcon.IsVisible = false;
+                            NextIcon.IsVisible = false;
+
+                            StatusLabel.Text = StatusItems[m_currentIndex].ToString();
                         }
                         else
                         {
+                            CountLabel.IsVisible = true;
+                            PreviousIcon.IsVisible = true;
+                            NextIcon.IsVisible = true;
+
                             CountLabel.Text = string.Format("({0} of {1})", m_currentIndex + 1, StatusItems.Length);
                             StatusLabel.Text = StatusItems[m_currentIndex].ToString();
                         }

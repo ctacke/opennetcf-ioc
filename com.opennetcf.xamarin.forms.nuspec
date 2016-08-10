@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.xamarin.forms</id>
-        <version>1.0.16221.0</version>
+        <version>1.0.16222.0</version>
         <title>OpenNETCF Controls for Xamarin Forms</title>
         <authors>Chris Tacke</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
