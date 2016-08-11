@@ -18,6 +18,8 @@
              HorizontalOptions="Center" />
     <Button Text="Add Notification"
             Command="{Binding AddNotificationClicked}"/>
+    <Button Text="Remove Notification"
+            Command="{Binding RemoveNotificationClicked}"/>
   </StackLayout>
   
 </ContentPage>

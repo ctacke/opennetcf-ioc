@@ -68,11 +68,25 @@ namespace OpenNETCF.Controls
         {
             base.OnPropertyChanged(propertyName);
 
-            if (propertyName == "StatusItems")
+            switch (propertyName)
             {
-                SetValue(StatusItemsProperty, StatusItems);
-                m_currentIndex = 0;
-                UpdateStatusText();
+
+
+                case "StatusItems":
+                    SetValue(StatusItemsProperty, StatusItems);
+                    m_currentIndex = 0;
+                    UpdateStatusText();
+                    break;
+                case "IsVisible":
+                    if (IsVisible)
+                    {
+                        if (StatusItems != null)
+                        {
+                            UpdateStatusText();
+                        }
+                        this.ForceLayout();
+                    }
+                    break;
             }
         }
 
@@ -113,9 +127,12 @@ namespace OpenNETCF.Controls
             {
                 await Task.Delay(AutoscrollPeriod * 1000);
 
-                if (!m_skipNextScroll)
+                if ((StatusItems != null) && (StatusItems.Length > 1))
                 {
-                    DoScrollNext();
+                    if (!m_skipNextScroll)
+                    {
+                        DoScrollNext();
+                    }
                 }
                 m_skipNextScroll = false;
             }

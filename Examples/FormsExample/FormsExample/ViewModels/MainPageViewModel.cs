@@ -52,5 +52,18 @@ namespace FormsExample.ViewModels
                 });
             }
         }
+
+        public ICommand RemoveNotificationClicked
+        {
+            get
+            {
+                return new Command((item) =>
+                {
+                    m_items.RemoveAt(0);
+                    PropertyChanged.Fire(this, "StatusStrings");
+                    PropertyChanged.Fire(this, "HasNotifications");
+                });
+            }
+        }
     }
 }
