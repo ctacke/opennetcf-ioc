@@ -24,7 +24,7 @@
     <file src=".\bin\Android\Release\OpenNETCF.Google.Analytics.Android.pdb" target="monoandroid+monotouch" />
 
     <!-- iOS -->
-    <file src=".\bin\Android\iOS\OpenNETCF.Google.Analytics.iOS.dll" target="monoandroid+monotouch" />
-    <file src=".\bin\Android\iOS\OpenNETCF.Google.Analytics.iOS.pdb" target="monoandroid+monotouch" />
+    <file src=".\bin\iOS\Release\OpenNETCF.Google.Analytics.iOS.dll" target="monoandroid+monotouch" />
+    <file src=".\bin\iOS\Release\OpenNETCF.Google.Analytics.iOS.pdb" target="monoandroid+monotouch" />
   </files>
 </package>
