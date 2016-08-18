@@ -49,7 +49,26 @@ namespace OpenNETCF.GA
             ClientID = clientID;
 
             // populate a user agent based on current environment
-            UserAgent = UserAgentGenerator.GetPlatformUserAgent();
+
+            OpenNETCF.GA.IUserAgentResolver resolver = null;
+
+            try
+            {
+                resolver = Xamarin.Forms.DependencyService.Get<OpenNETCF.GA.IUserAgentResolver>();
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            if (resolver != null)
+            {
+                UserAgent = resolver.GetUserAgent();
+            }
+            else
+            {
+                UserAgent = UserAgentGenerator.GetPlatformUserAgent();
+            }
         }
 
         public void TrackScreenView(string screenName, string appName = null, Version appVersion = null, string appID = null, string appInstallerID = null)

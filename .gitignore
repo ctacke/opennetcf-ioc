@@ -19,3 +19,5 @@ Examples/FormsExample/FormsExample.iOS/obj/
 Examples/FormsExample/FormsExample/obj/
 OpenNETCF.Xamarin.Forms/OpenNETCF.Xamarin.Forms.iOS/obj/
 OpenNETCF.Xamarin.Forms/Portable/obj/
+OpenNETCF.Google.Analytics/OpenNETCF.Google.Analytics.Android/obj/
+OpenNETCF.Google.Analytics/Portable/obj/
