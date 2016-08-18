@@ -92,6 +92,25 @@ namespace OpenNETCF.IoC
             m_inSession = false;
         }
 
+        public void TrackEvent(string category, string action, string label = null, string value = null)
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            m_analytics.TrackEvent(category, action, label, value);
+        }
+
+        public void TrackException(Exception exception, bool isFatal = false)
+        {
+            TrackException(string.Format("{0}: {1}", exception.GetType().Name, exception.Message), isFatal);
+        }
+
+        public void TrackException(string description, bool isFatal = false)
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            m_analytics.TrackException(description, isFatal);
+        }
+
         internal string GetPageName(Page page)
         {
             if (page == null) return null;
