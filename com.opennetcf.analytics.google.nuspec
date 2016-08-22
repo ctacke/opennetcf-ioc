@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.analytics.google.pcl</id>
-        <version>1.0.16230.2</version>
+        <version>1.0.16230.3</version>
         <title>OpenNETCF's Google Analytics for Xamarin Forms</title>
         <authors>Chris Tacke</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -16,8 +16,8 @@
     </metadata>
   <files>
     <!-- Portables -->
-    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
-    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.pdb" target="portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
+    <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.pdb" target="lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
 
     <!-- Android -->
     <file src=".\bin\PCL\Release\OpenNETCF.Google.Analytics.dll" target="lib\monoandroid+monotouch" />
