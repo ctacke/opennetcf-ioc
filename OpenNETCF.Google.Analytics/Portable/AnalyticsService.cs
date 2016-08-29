@@ -25,7 +25,7 @@ namespace OpenNETCF.GA
 
         private Dictionary<string, string> m_parameters;
 
-        public AnalyticsService(string trackingID, string clientID = null, string applicationName = null, Version applicationVersion = null)
+        public AnalyticsService(string trackingID, string clientID = null, string applicationName = null, Version applicationVersion = null, string applicationID = null)
         {
             m_parameters = new Dictionary<string, string>();
 
@@ -36,6 +36,7 @@ namespace OpenNETCF.GA
 
             ApplicationName = applicationName;
             ApplicationVersion = applicationVersion;
+            ApplicationID = applicationID;
 
             // TODO: validate these a little better
             if (string.IsNullOrEmpty(trackingID)) throw new ArgumentException("Invalid trackingID");
@@ -110,6 +111,11 @@ namespace OpenNETCF.GA
             {
                 plist.Add(new TrackingParameter(ParameterName.ApplicationID, appID));
             }
+            else if (ApplicationID != null)
+            {
+                plist.Add(new TrackingParameter(ParameterName.ApplicationID, ApplicationID));
+            }
+
             if (!string.IsNullOrEmpty(appInstallerID))
             {
                 plist.Add(new TrackingParameter(ParameterName.ApplicationInstallerID, appInstallerID));

@@ -46,7 +46,7 @@ namespace OpenNETCF.IoC
             }
         }
 
-        public void Register(string trackingID, string appName, Version appVersion = null)
+        public void Register(string trackingID, string appName, Version appVersion = null, string appID = null)
         {
             m_analytics = new AnalyticsService(trackingID, applicationName: appName, applicationVersion: appVersion);
             RootWorkItem.Services.Add(m_analytics);
@@ -109,6 +109,13 @@ namespace OpenNETCF.IoC
             if (m_analytics == null) throw new Exception("Analytics not initialized.");
 
             m_analytics.TrackException(description, isFatal);
+        }
+
+        public void TrackScreenView(string screenName)
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            m_analytics.TrackScreenView(screenName);
         }
 
         internal string GetPageName(Page page)

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.ioc.pcl</id>
-        <version>1.0.16230.0</version>
+        <version>1.0.16241.0</version>
         <title>OpenNETCF IoC for Xamarin Forms</title>
         <authors>Chris Tacke</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -10,13 +10,20 @@
 
     <dependencies>
       <group>
-        <dependency id="com.opennetcf.analytics.google.pcl" version="1.0.16202"/>
+        <dependency id="com.opennetcf.analytics.google.pcl" version="1.0.16241"/>
         <dependency id="com.opennetcf.extensions.pcl" version="1.0"/>
         <dependency id="Xamarin.Forms" version="2.0" />
       </group>
     </dependencies>
     </metadata>
   <files>
-    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib/portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
+    <!-- Portables -->
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
+
+    <!-- Android -->
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib\monoandroid+monotouch" />
+
+    <!-- iOS -->
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib\Xamarin.iOS10" />
   </files>
 </package>
