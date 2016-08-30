@@ -168,6 +168,8 @@ namespace OpenNETCF.IoC
             }
         }
 
+        private static List<Type> m_multipagesBeingWatched = new List<Type>();
+
         private static TView CreateViewAndViewModel<TView>()
             where TView : Page
         {
@@ -197,6 +199,16 @@ namespace OpenNETCF.IoC
                 }
             }
 
+            if (view is MultiPage<ContentPage>)
+            {
+                var t = typeof(View);
+                if (!m_multipagesBeingWatched.Contains(t))
+                {
+                    (view as MultiPage<ContentPage>).CurrentPageChanged += OnMultiPageChanged;
+                    m_multipagesBeingWatched.Add(t);
+                }
+            }
+
             // do we have a viewmodel already created?
             var viewModel = RootWorkItem.Services.Get(viewModelType) as IViewModel;
 
@@ -216,6 +228,13 @@ namespace OpenNETCF.IoC
             view.BindingContext = viewModel;
 
             return view;
+        }
+
+        private static void OnMultiPageChanged(object sender, EventArgs e)
+        {
+            var source = sender as CarouselPage;
+            var toPage = Analytics.GetPageName(source.CurrentPage);
+            Analytics.LogPageNavigation(null, toPage);
         }
 
         public static TViewModel GetViewModel<TViewModel>()
