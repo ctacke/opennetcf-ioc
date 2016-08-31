@@ -118,19 +118,68 @@ namespace OpenNETCF.IoC
             m_analytics.TrackScreenView(screenName);
         }
 
+        public void AddTrackingAlias<TPage>(string trackAs)
+            where TPage : Page
+        {
+            if (trackAs.IsNullOrEmpty()) return;
+
+            var typeKey = typeof(TPage);
+            var name = typeKey.Name;
+
+            lock (m_screenAliasDictionary)
+            {
+                if (m_screenAliasDictionary.ContainsKey(typeKey))
+                {
+                    // replace
+                    m_screenAliasDictionary[typeKey] = trackAs;
+                }
+                else
+                {
+                    m_screenAliasDictionary.Add(typeKey, trackAs);
+                }
+            }
+        }
+
+        public void TrackScreenView(Page page)
+        {
+            if (m_analytics == null) throw new Exception("Analytics not initialized.");
+
+            var screenName = GetPageName(page);
+            m_analytics.TrackScreenView(screenName);
+        }
+
+        private Dictionary<Type, string> m_screenAliasDictionary = new Dictionary<Type, string>();
+
         internal string GetPageName(Page page)
         {
             if (page == null) return null;
 
-            var name = page.Title;
+            var typeKey = page.GetType();
+            var name = GetPageName(typeKey);
+
+            if(name == null) name = page.Title;
+
             if (name.IsNullOrEmpty())
             {
-                name = page.GetType().Name;
+                name = typeKey.Name;
             }
 
-            // TODO: implement user-overridable name lookups
-
             return name;
+        }
+
+        private string GetPageName(Type pageType)
+        {
+            if (pageType == null) return null;
+
+            lock (m_screenAliasDictionary)
+            {
+                if (m_screenAliasDictionary.ContainsKey(pageType))
+                {
+                    return m_screenAliasDictionary[pageType];
+                }
+            }
+
+            return null;
         }
 
         internal void LogPageNavigation(string fromPage, string toPage)
