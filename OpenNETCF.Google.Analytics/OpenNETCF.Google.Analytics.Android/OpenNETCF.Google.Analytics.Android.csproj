@@ -85,6 +85,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Shared\OpenNETCF.Google.Analytics.Version.cs">
+      <Link>Properties\OpenNETCF.Google.Analytics.Version.cs</Link>
+    </Compile>
     <Compile Include="GA.cs" />
     <Compile Include="AndroidUserAgentResolver.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

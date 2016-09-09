@@ -38,6 +38,17 @@ namespace OpenNETCF.IoC
             get { return m_workItem.Services; }
         }
 
+#if !NO_WINFORMS
+        public static ManagedObjectCollection<UI.ISmartPart> SmartParts
+        {
+            get { return m_workItem.SmartParts; }
+        }
+
+        public static ModuleCollection Modules
+        {
+            get { return m_workItem.Modules; }
+        }
+#endif
         public static WorkItem Instance
         {
             get { return m_workItem; }

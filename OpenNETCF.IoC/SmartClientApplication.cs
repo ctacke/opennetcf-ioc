@@ -27,7 +27,7 @@ namespace OpenNETCF.IoC
             Start(store);
         }
 
-        internal virtual void Start(IModuleInfoStore store)
+        public virtual void Start(IModuleInfoStore store)
         {
 #if !NO_WINFORMS
             // add a generic "control" to the Items list.
@@ -45,7 +45,7 @@ namespace OpenNETCF.IoC
 
             if (store != null)
             {
-                storeService.ModuleLoaded += new EventHandler<GenericEventArgs<IModuleInfo>>(storeService_ModuleLoaded);
+                storeService.ModuleLoaded += new EventHandler<GenericEventArgs<IModuleInfo>>(OnModuleLoaded);
                 storeService.LoadModulesFromStore(store);
             }
 
@@ -64,7 +64,7 @@ namespace OpenNETCF.IoC
         {
         }
 
-        internal void storeService_ModuleLoaded(object sender, GenericEventArgs<IModuleInfo> e)
+        public void OnModuleLoaded(object sender, GenericEventArgs<IModuleInfo> e)
         {
             OnModuleLoadComplete(e.Value.Assembly.FullName);
         }

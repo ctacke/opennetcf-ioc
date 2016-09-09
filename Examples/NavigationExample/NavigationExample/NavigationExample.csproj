@@ -123,7 +123,7 @@
       <Project>{0ccfeee5-54e1-45f6-b699-d64ce5a36f00}</Project>
       <Name>OpenNETCF.Extensions.PCL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\OpenNETCF.Google.Analytics\OpenNETCF.Google.Analytics.csproj">
+    <ProjectReference Include="..\..\..\OpenNETCF.Google.Analytics\Portable\OpenNETCF.Google.Analytics.csproj">
       <Project>{073b3f16-c162-43f6-a0a2-0d4008bf817d}</Project>
       <Name>OpenNETCF.Google.Analytics</Name>
     </ProjectReference>

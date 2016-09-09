@@ -36,7 +36,7 @@ namespace OpenNETCF.IoC
         private WorkItem m_root;
         private object m_syncRoot = new object();
 
-        internal ModuleInfoStoreService()
+        public ModuleInfoStoreService()
             : this(RootWorkItem.Instance)
         {
         }
@@ -46,7 +46,7 @@ namespace OpenNETCF.IoC
             m_root = root;
         }
 
-        internal void LoadModulesFromStore(IModuleInfoStore store)
+        public void LoadModulesFromStore(IModuleInfoStore store)
         {
             Validate
                 .Begin()

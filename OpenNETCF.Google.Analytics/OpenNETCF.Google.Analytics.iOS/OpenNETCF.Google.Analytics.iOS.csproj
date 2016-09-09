@@ -58,6 +58,9 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Shared\OpenNETCF.Google.Analytics.Version.cs">
+      <Link>Properties\OpenNETCF.Google.Analytics.Version.cs</Link>
+    </Compile>
     <Compile Include="iOSUserAgentResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

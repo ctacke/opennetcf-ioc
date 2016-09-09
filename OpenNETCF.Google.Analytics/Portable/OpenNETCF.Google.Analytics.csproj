@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Shared\OpenNETCF.Google.Analytics.Version.cs">
+      <Link>Properties\OpenNETCF.Google.Analytics.Version.cs</Link>
+    </Compile>
     <Compile Include="HitType.cs" />
     <Compile Include="IUserAgentResolver.cs" />
     <Compile Include="ParameterName.cs" />

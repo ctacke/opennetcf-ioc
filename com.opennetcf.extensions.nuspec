@@ -2,14 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.extensions.ffx</id>
-        <version>1.0.186.0</version>
-        <title>OpenNETCF Extensions for Xamarin Forms</title>
+        <version>1.0.16251.2</version>
+        <title>OpenNETCF Extensions</title>
         <authors>Chris Tacke</authors>
         <projectUrl>https://bitbucket.org/opennetcf/shared</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>OpenNETCF's Extensions library</description>
     </metadata>
     <files>
-        <file src=".\bin\FFx\Release\OpenNETCF.Extensions.dll" target="lib\OpenNETCF.Extensions.dll" />
+
+        <!-- .NET 4.0 and later -->
+        <file src=".\bin\Mono\Release\OpenNETCF.Extensions.dll" target="lib\net40" />
+
+        <!-- Mono -->
+        <file src=".\bin\Mono\Release\OpenNETCF.Extensions.dll" target="lib\MonoTouch40" />
+        <file src=".\bin\Mono\Release\Mono.Posix.dll" target="lib\MonoTouch40" />
     </files>
 </package>

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenNETCF</RootNamespace>
     <AssemblyName>OpenNETCF.Extensions</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -28,7 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'FFxRelease|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\bin\FFx\Release\</OutputPath>
@@ -37,11 +37,11 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Nat%27s|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Nat%27s\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DESKTOP</DefineConstants>
-    <DebugType>full</DebugType>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'MonoRelease|AnyCPU'">
+    <OutputPath>..\bin\Mono\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -73,6 +73,7 @@
     <Compile Include="DoubleExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="DisposableBase.cs" />
+    <Compile Include="FormsExtensions.cs" />
     <Compile Include="IEnumStringExtensions.cs" />
     <Compile Include="LocalDevice_Mono.cs" />
     <Compile Include="LocalDevice_Monotouch.cs" />
