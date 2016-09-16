@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.extensions.ffx</id>
-        <version>1.0.16251.2</version>
+        <version>1.0.16256.0</version>
         <title>OpenNETCF Extensions</title>
         <authors>Chris Tacke</authors>
         <projectUrl>https://bitbucket.org/opennetcf/shared</projectUrl>
@@ -12,7 +12,7 @@
     <files>
 
         <!-- .NET 4.0 and later -->
-        <file src=".\bin\Mono\Release\OpenNETCF.Extensions.dll" target="lib\net40" />
+        <file src=".\bin\FFx\Release\OpenNETCF.Extensions.dll" target="lib\net40" />
 
         <!-- Mono -->
         <file src=".\bin\Mono\Release\OpenNETCF.Extensions.dll" target="lib\MonoTouch40" />

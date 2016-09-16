@@ -39,6 +39,11 @@ namespace OpenNETCF.IoC
         }
 
 #if !NO_WINFORMS
+        public static ManagedObjectCollection<UI.IWorkspace> Workspaces
+        {
+            get { return m_workItem.Workspaces; }
+        }
+
         public static ManagedObjectCollection<UI.ISmartPart> SmartParts
         {
             get { return m_workItem.SmartParts; }

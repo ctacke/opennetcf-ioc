@@ -32,7 +32,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\bin\FFx\Release\</OutputPath>
-    <DefineConstants>TRACE;DESKTOP</DefineConstants>
+    <DefineConstants>TRACE;MONO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\OpenNETCF.Extensions.Version.cs">
+      <Link>Properties\OpenNETCF.Extensions.Version.cs</Link>
+    </Compile>
     <Compile Include="ArrayExtensions.cs" />
     <Compile Include="BasicXmlSerializer.cs" />
     <Compile Include="BitVector16.cs" />
