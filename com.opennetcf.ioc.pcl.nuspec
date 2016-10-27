@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.ioc.pcl</id>
-        <version>1.0.16244.0</version>
+        <version>1.0.16299.0</version>
         <title>OpenNETCF IoC for Xamarin Forms</title>
         <authors>Chris Tacke</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -18,7 +18,7 @@
     </metadata>
   <files>
     <!-- Portables -->
-    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac" />
+    <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib\portable-net45+netcore45+wpa81+wp8" />
 
     <!-- Android -->
     <file src=".\bin\PCL\Release\OpenNETCF.IoC.dll" target="lib\monoandroid+monotouch" />

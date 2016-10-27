@@ -21,19 +21,15 @@ namespace OpenNETCF.Platform.iOS
 
             UIFont font;
 
-            if (newControl.FontSource.IsNullOrEmpty())
-            {
-                font = UIFont.SystemFontOfSize((nfloat)newControl.FontSize, UIFontWeight.Regular);
-            }
-            else
+            if (!newControl.FontSource.IsNullOrEmpty())
             {
                 font = UIFont.FromName(newControl.FontSource, (nfloat)newControl.FontSize);
-            }
 
-            var ctrl = Control as UILabel;
-            if (ctrl != null)
-            {
-                ctrl.Font = font;
+                var ctrl = Control as UILabel;
+                if (ctrl != null)
+                {
+                    ctrl.Font = font;
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ namespace OpenNETCF.IoC
         private static SafeDictionary<Type, Type> m_index = new SafeDictionary<Type, Type>();
         private static Page m_mainView;
         private static bool m_navigating;
+        private static List<Type> m_multipagesBeingWatched = new List<Type>();
 
         public static AnalyticsSettings Analytics { get; private set; } = new AnalyticsSettings();
 
@@ -35,7 +36,7 @@ namespace OpenNETCF.IoC
         }
 
         public static void SetMainView<TView>(bool wrapInNavigationPage)
-            where TView : Page
+            where TView : Page, new()
         {
             var fromPageName = Analytics.GetPageName(CurrentView);
 
@@ -57,6 +58,22 @@ namespace OpenNETCF.IoC
 
             var toPageName = Analytics.GetPageName(m_mainView);
             Analytics.LogPageNavigation(fromPageName, toPageName);
+        }
+
+        public static void HideNavigationBar()
+        {
+            if (m_mainView != null)
+            {
+                NavigationPage.SetHasNavigationBar(m_mainView, false);
+            }
+        }
+
+        public static void ShowNavigationBar()
+        {
+            if (m_mainView != null)
+            {
+                NavigationPage.SetHasNavigationBar(m_mainView, true);
+            }
         }
 
         public static void Register<TView, TViewModel>()
@@ -85,19 +102,19 @@ namespace OpenNETCF.IoC
         }
 
         public async static void NavigateForward<TView>()
-            where TView : Page
+            where TView : Page, new()
         {
             await ShowView<TView>(true, false);
         }
 
         public async static void NavigateForward<TView>(bool animated)
-            where TView : Page
+            where TView : Page, new()
         {
             await ShowView<TView>(animated, false);
         }
 
         public async static void ShowModal<TView>(bool animated)
-            where TView : Page
+            where TView : Page, new()
         {
             await ShowView<TView>(animated, true);
         }
@@ -131,7 +148,7 @@ namespace OpenNETCF.IoC
         }
 
         private async static Task ShowView<TView>(bool animated, bool modal)
-            where TView : Page
+            where TView : Page, new()
         {
             if (m_navigating) return;
             try
@@ -168,10 +185,8 @@ namespace OpenNETCF.IoC
             }
         }
 
-        private static List<Type> m_multipagesBeingWatched = new List<Type>();
-
         private static TView CreateViewAndViewModel<TView>()
-            where TView : Page
+            where TView : Page, new()
         {
             var viewType = typeof(TView);
             Type viewModelType = null;
@@ -191,7 +206,16 @@ namespace OpenNETCF.IoC
             {
                 try
                 {
-                    view = RootWorkItem.Services.AddNew<TView>();
+                    // create the view
+                    view = new TView();
+
+                    // check to see if it's now registered
+                    // if the View calls something like GetRegisteredViewModel, we'll get re-entered and it will already be registered
+                    var existing = RootWorkItem.Services.Get<TView>();
+                    if (existing == null)
+                    {
+                        RootWorkItem.Services.Add<TView>(view);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -259,7 +283,7 @@ namespace OpenNETCF.IoC
         }
 
         public static IViewModel GetViewModelForView<TView>()
-            where TView : Page
+            where TView : Page, new()
         {
             var viewType = typeof(TView);
             Type viewModelType = null;
@@ -313,7 +337,7 @@ namespace OpenNETCF.IoC
         }
 
         public static IViewModel GetRegisteredViewModel<TView>(this TView view)
-            where TView : Page
+            where TView : Page, new()
         {
             var viewType = typeof(TView);
             Type viewModelType = null;
@@ -343,7 +367,7 @@ namespace OpenNETCF.IoC
         }
 
         public static TView GetView<TView>()
-            where TView : Page
+            where TView : Page, new()
         {
             return CreateViewAndViewModel<TView>();
         }

@@ -32,11 +32,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\bin\PCL\Release\</OutputPath>
-    <DefineConstants>TRACE;PCL</DefineConstants>
+    <DefineConstants>TRACE;PCL NO_WINFORMS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\OpenNETCF.IoC.Version.cs">
+      <Link>Properties\OpenNETCF.IoC.Version.cs</Link>
+    </Compile>
     <Compile Include="Attributes\CreateNewAttribute.cs" />
     <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
     <Compile Include="ComponentDescriptor.cs" />
