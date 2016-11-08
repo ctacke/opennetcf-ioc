@@ -189,6 +189,11 @@ namespace OpenNETCF.IoC
             where TView : Page, new()
         {
             var viewType = typeof(TView);
+            return (TView)CreateViewAndViewModel(viewType);
+        }
+
+        private static object CreateViewAndViewModel(Type viewType)
+        {
             Type viewModelType = null;
 
             lock (m_index)
@@ -200,21 +205,21 @@ namespace OpenNETCF.IoC
                 viewModelType = m_index[viewType];
             }
             // do we have a view already created?
-            var view = RootWorkItem.Services.Get<TView>();
+            var view = RootWorkItem.Services.Get(viewType) as Page;
 
             if (view == null)
             {
                 try
                 {
                     // create the view
-                    view = new TView();
+                    view = Activator.CreateInstance(viewType) as Page;
 
                     // check to see if it's now registered
                     // if the View calls something like GetRegisteredViewModel, we'll get re-entered and it will already be registered
-                    var existing = RootWorkItem.Services.Get<TView>();
+                    var existing = RootWorkItem.Services.Get(viewType);
                     if (existing == null)
                     {
-                        RootWorkItem.Services.Add<TView>(view);
+                        RootWorkItem.Services.Add(viewType, view);
                     }
                 }
                 catch (Exception ex)
@@ -286,6 +291,11 @@ namespace OpenNETCF.IoC
             where TView : Page, new()
         {
             var viewType = typeof(TView);
+            return GetViewModelForView(viewType);
+        }
+
+        internal static IViewModel GetViewModelForView(Type viewType)
+        {
             Type viewModelType = null;
 
             lock (m_index)
@@ -300,7 +310,7 @@ namespace OpenNETCF.IoC
 
             if (existing == null)
             {
-                CreateViewAndViewModel<TView>();
+                CreateViewAndViewModel(viewType);
             }
 
             return RootWorkItem.Services.Get(viewModelType) as IViewModel;
@@ -310,7 +320,11 @@ namespace OpenNETCF.IoC
             where TViewModel : IViewModel
         {
             var viewModelType = typeof(TViewModel);
+            return GetViewForViewModel(viewModelType);
+        }
 
+        internal static Page GetViewForViewModel(Type viewModelType)
+        {
             lock (m_index)
             {
                 var tuple = m_index.FirstOrDefault(v => v.Value == viewModelType);
