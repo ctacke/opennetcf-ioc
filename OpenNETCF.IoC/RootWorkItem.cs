@@ -38,7 +38,7 @@ namespace OpenNETCF.IoC
             get { return m_workItem.Services; }
         }
 
-#if !NO_WINFORMS
+#if (!NO_WINFORMS) && (!PCL)
         public static ManagedObjectCollection<UI.IWorkspace> Workspaces
         {
             get { return m_workItem.Workspaces; }

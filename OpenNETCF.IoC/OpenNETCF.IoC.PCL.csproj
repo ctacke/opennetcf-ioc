@@ -51,41 +51,19 @@
     <Compile Include="Interfaces\IWorkItemController.cs" />
     <Compile Include="IoCModuleEntryAttribute.cs" />
     <Compile Include="ManagedObjectCollection.cs" />
-    <Compile Include="MVVM\AnalyticsSettings.cs" />
-    <Compile Include="MVVM\ExtensionMethods.cs" />
-    <Compile Include="MVVM\IViewModel.cs" />
-    <Compile Include="MVVM\NavigationService.cs" />
-    <Compile Include="MVVM\ViewTypeNotRegisteredException.cs" />
     <Compile Include="ObjectFactory.PCL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationScope.cs" />
     <Compile Include="RootWorkItem.cs" />
     <Compile Include="ServiceCollection.cs" />
     <Compile Include="UIInvoker.cs" />
+    <Compile Include="ValidatingCommand.cs" />
     <Compile Include="WorkItem.PCL.cs" />
     <Compile Include="WorkItemController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenNETCF.Extensions\OpenNETCF.Extensions.PCL.csproj">
-      <Project>{0ccfeee5-54e1-45f6-b699-d64ce5a36f00}</Project>
-      <Name>OpenNETCF.Extensions.PCL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenNETCF.Google.Analytics\Portable\OpenNETCF.Google.Analytics.csproj">
-      <Project>{073b3f16-c162-43f6-a0a2-0d4008bf817d}</Project>
-      <Name>OpenNETCF.Google.Analytics</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    <Reference Include="OpenNETCF.Extensions, Version=1.0.17110.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\com.opennetcf.extensions.pcl.1.0.17110.0\lib\portable45-net45+win8+wpa81\OpenNETCF.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -99,7 +77,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\form-manager\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\form-manager\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
   </Target>
+  <Import Project="NuGetReferenceHintPathRewrite.targets" />
+  <Import Project="..\..\form-manager\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\form-manager\packages\Xamarin.Forms.2.3.4.224\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
