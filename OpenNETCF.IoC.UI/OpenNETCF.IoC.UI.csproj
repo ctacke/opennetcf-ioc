@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenNETCF.IoC.UI</RootNamespace>
     <AssemblyName>OpenNETCF.IoC.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -55,8 +55,13 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenNETCF.Extensions, Version=1.0.17110.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\com.opennetcf.extensions.pcl.1.0.17110.0\lib\portable45-net45+win8+wpa81\OpenNETCF.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
@@ -77,6 +82,7 @@
     <Compile Include="..\Shared\OpenNETCF.IoC.Version.cs">
       <Link>Properties\OpenNETCF.IoC.Version.cs</Link>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="GestureDirection.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="DeckWorkspace.cs">
@@ -108,10 +114,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenNETCF.Extensions\OpenNETCF.Extensions.FFx.csproj">
-      <Project>{82d377b5-7a45-439c-becb-7d008e7152b3}</Project>
-      <Name>OpenNETCF.Extensions.FFx</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenNETCF.IoC\OpenNETCF.IoC.FFx.csproj">
       <Project>{aad0d35c-626c-4777-95d6-dbacebd3b5c9}</Project>
       <Name>OpenNETCF.IoC.FFx</Name>

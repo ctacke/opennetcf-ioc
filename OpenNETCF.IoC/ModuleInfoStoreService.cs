@@ -147,7 +147,7 @@ namespace OpenNETCF.IoC
 
             if (attrib != null)
             {
-                if (!attrib.EntryType.Implements<IModule>())
+                if (!(attrib.EntryType is IModule))
                 {
                     throw new Exception(
                         string.Format("IoCModuleEntry.EntryType in assembly '{0}' doesn't derive from IModule",

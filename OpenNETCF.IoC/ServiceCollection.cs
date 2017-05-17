@@ -106,7 +106,7 @@ namespace OpenNETCF.IoC
 #if !PCL
             if (registerAs.IsInterface)
             {
-                if (!serviceType.Implements(registerAs))
+                if (!registerAs.IsAssignableFrom(serviceType))
                 {
                     throw new ArgumentException(string.Format("instance must derive from {0} to be registered as that type", registerAs.Name));
                 }
@@ -156,7 +156,7 @@ namespace OpenNETCF.IoC
 #if !PCL
             if (registerAs.IsInterface)
             {
-                if (!serviceInstance.GetType().Implements(registerAs))
+                if (! registerAs.IsAssignableFrom(serviceInstance.GetType()))
                 {
                     throw new ArgumentException(string.Format("instance must derive from {0} to be registered as that type", registerAs.Name));
                 }
