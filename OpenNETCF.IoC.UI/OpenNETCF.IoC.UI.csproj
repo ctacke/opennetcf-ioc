@@ -58,8 +58,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenNETCF.Extensions, Version=1.0.17110.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\com.opennetcf.extensions.pcl.1.0.17110.0\lib\portable45-net45+win8+wpa81\OpenNETCF.Extensions.dll</HintPath>
+    <Reference Include="OpenNETCF.Extensions, Version=1.0.17139.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\com.opennetcf.extensions.pcl.1.0.17139.0\lib\portable45-net45+win8+wpa81\OpenNETCF.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenNETCF.Extensions.FFx, Version=1.0.17139.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\com.opennetcf.extensions.ffx.1.0.17139.0\lib\net45\OpenNETCF.Extensions.FFx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -82,7 +86,6 @@
     <Compile Include="..\Shared\OpenNETCF.IoC.Version.cs">
       <Link>Properties\OpenNETCF.IoC.Version.cs</Link>
     </Compile>
-    <Compile Include="Extensions.cs" />
     <Compile Include="GestureDirection.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="DeckWorkspace.cs">
@@ -111,13 +114,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\OpenNETCF.IoC\OpenNETCF.IoC.FFx.csproj">
       <Project>{aad0d35c-626c-4777-95d6-dbacebd3b5c9}</Project>
       <Name>OpenNETCF.IoC.FFx</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
