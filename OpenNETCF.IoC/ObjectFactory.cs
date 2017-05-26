@@ -17,17 +17,6 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Threading;
 
-#if WINDOWS_PHONE
-using TheInvoker = System.Windows.Threading.Dispatcher;
-#elif IPHONE || NO_WINFORMS
-using TheInvoker = System.Object;
-#elif ANDROID
-using TheInvoker = OpenNETCF.UIInvoker;
-#else
-using TheInvoker = System.Windows.Forms.Control;
-using System.Windows.Forms;
-#endif
-
 namespace OpenNETCF.IoC
 {
     internal class ObjectFactory
@@ -218,7 +207,12 @@ namespace OpenNETCF.IoC
         {
             if (collection == null) return;
 
-            var invokerControl = RootWorkItem.Items.Get<TheInvoker>(Constants.EventInvokerName);
+            var invokerControl = RootWorkItem.Items.Get<object>(Constants.EventInvokerName);
+            if(invokerControl == null)
+            {
+                invokerControl = InvokerFactory.GetInvokerObject();
+                RootWorkItem.Items.Add(invokerControl, Constants.EventInvokerName);
+            }
 
             foreach (var item in collection.ToList())
             {
@@ -257,13 +251,13 @@ namespace OpenNETCF.IoC
                         {
                             // unsure why so far but this fails if the EventHandler signature takes a subclass of EventArgs as the second param
                             // and if you use just EventArgs, the arg data gets lost
-                            BasicInvoker invoker = new BasicInvoker(invokerControl, d);
+                            var invoker = InvokerFactory.GetInvoker(invokerControl, d);
                             Delegate intermediate = Delegate.CreateDelegate(source.EventInfo.EventHandlerType, invoker, invoker.HandlerMethod);
                             source.EventInfo.AddEventHandler(instance, intermediate);
                         }
                         else if ((source.EventInfo.EventHandlerType.IsGenericType) && (source.EventInfo.EventHandlerType.GetGenericTypeDefinition().Name == "EventHandler`1"))
                         {
-                            BasicInvoker invoker = new BasicInvoker(invokerControl, d);
+                            var invoker = InvokerFactory.GetInvoker(invokerControl, d);
                             Delegate intermediate = Delegate.CreateDelegate(source.EventInfo.EventHandlerType, invoker, invoker.HandlerMethod);
                             source.EventInfo.AddEventHandler(instance, intermediate);
                         }
@@ -290,16 +284,12 @@ namespace OpenNETCF.IoC
                                 // wire up event handlers on the UI thread
                                 if ((ei.EventHandlerType.IsGenericType) && (ei.EventHandlerType.GetGenericTypeDefinition().Name == "EventHandler`1")
                                     || (ei.EventHandlerType == typeof(EventHandler))
-#if !(WINDOWS_PHONE || ANDROID || NO_WINFORMS)
-                                    || (ei.EventHandlerType == typeof(KeyEventHandler))
-#endif
                                     )
                                 {
                                     // unsure why so far but this fails if the EventHandler signature takes a subclass of EventArgs as the second param
                                     // and if you use just EventArgs, the arg data gets lost
-
                                 
-                                    BasicInvoker invoker = new BasicInvoker(invokerControl, d);
+                                    var invoker = InvokerFactory.GetInvoker(invokerControl, d);
                                     Delegate intermediate = Delegate.CreateDelegate(ei.EventHandlerType, invoker, invoker.HandlerMethod);
                                     ei.AddEventHandler(item.Value, intermediate);
                                 }

@@ -10,7 +10,9 @@
 // submissions of changes, fixes or updates are welcomed but not required
 //
 using System;
+using System.IO;
 using System.Reflection;
+using System.Linq;
 
 #if WINDOWS_PHONE
 using TheInvoker = System.Windows.Threading.Dispatcher;

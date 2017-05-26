@@ -29,8 +29,8 @@ namespace OpenNETCF.IoC.UI
         IWorkspace Workspace { get; set; }
 
 #if !(WINDOWS_PHONE || IPHONE || ANDROID || NO_WINFORMS) 
-        System.Windows.Forms.DockStyle Dock { set; }
-        System.Windows.Forms.Control Parent { get; }
+//        System.Windows.Forms.DockStyle Dock { set; }
+//        System.Windows.Forms.Control Parent { get; }
 #endif
     }
 }

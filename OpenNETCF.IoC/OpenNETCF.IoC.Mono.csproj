@@ -79,6 +79,7 @@
     <Compile Include="BasicInvoker.cs" />
     <Compile Include="ComponentDescriptor.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Interfaces\IInvoker.cs" />
     <Compile Include="IoCLocalDevice.cs" />
     <Compile Include="IoCModuleEntryAttribute.cs" />
     <Compile Include="ModuleInfo.cs" />

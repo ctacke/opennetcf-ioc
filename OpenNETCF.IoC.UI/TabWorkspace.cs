@@ -214,7 +214,11 @@ namespace OpenNETCF.IoC.UI
                         page.ImageIndex = imageIndex;
                     }
 #endif
-                    smartPart.Dock = DockStyle.Fill;
+                    var ctl = smartPart as Control;
+                    if (ctl != null)
+                    {
+                        ctl.Dock = DockStyle.Fill;
+                    }
                     page.ClientRectangle.Inflate(-2, -2);
                     page.Controls.Add((Control)smartPart);
                     m_tabs.TabPages.Add(page);

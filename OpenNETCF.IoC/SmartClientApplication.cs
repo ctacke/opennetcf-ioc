@@ -29,16 +29,9 @@ namespace OpenNETCF.IoC
 
         public virtual void Start(IModuleInfoStore store)
         {
-#if !NO_WINFORMS
-            // add a generic "control" to the Items list.
-
-            // TODO: load this via reflection to eliminate the need for the referrence
-            var invoker = new System.Windows.Forms.Control();
-
-            // force handle creation
-            var handle = invoker.Handle;
+            var invoker = InvokerFactory.GetInvokerObject();
             RootWorkItem.Items.Add(invoker, Constants.EventInvokerName);
-#endif
+
             ModuleInfoStoreService storeService = RootWorkItem.Services.AddNew<ModuleInfoStoreService>();
 
             AddServices();

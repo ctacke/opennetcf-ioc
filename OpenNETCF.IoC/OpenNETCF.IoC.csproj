@@ -26,30 +26,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\FFx\Debug\</OutputPath>
+    <OutputPath>..\bin\Full\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'FFxRelease|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\FFx\Release\</OutputPath>
+    <OutputPath>..\bin\Full\Release\</OutputPath>
     <DefineConstants>TRACE;DESKTOP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'MonoRelease|AnyCPU'">
-    <OutputPath>..\bin\Mono\Release\</OutputPath>
-    <DefineConstants>TRACE;MONO NO_WINFORMS</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -62,7 +52,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -79,9 +68,10 @@
     <Compile Include="Attributes\Attributes.cs" />
     <Compile Include="Attributes\CreateNewAttribute.cs" />
     <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
-    <Compile Include="BasicInvoker.cs" />
+    <Compile Include="InvokerFactory.cs" />
     <Compile Include="ComponentDescriptor.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Interfaces\IInvoker.cs" />
     <Compile Include="IoCLocalDevice.cs" />
     <Compile Include="IoCModuleEntryAttribute.cs" />
     <Compile Include="ModuleInfo.cs" />
