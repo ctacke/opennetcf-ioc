@@ -54,14 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Invokers\FFx\OpenNETCF.IoC.Invoker.FFx.csproj">
-      <Project>{6fb1e1ac-f6d6-4e49-a2b3-4b3aaa680f79}</Project>
-      <Name>OpenNETCF.IoC.Invoker.FFx</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Invokers\Mono\OpenNETCF.IoC.Invoker.Mono.csproj">
-      <Project>{8027a96d-f3bd-4e0f-9689-7f66cc342b3b}</Project>
-      <Name>OpenNETCF.IoC.Invoker.Mono</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\OpenNETCF.IoC\OpenNETCF.IoC.csproj">
       <Project>{aad0d35c-626c-4777-95d6-dbacebd3b5c9}</Project>
       <Name>OpenNETCF.IoC</Name>

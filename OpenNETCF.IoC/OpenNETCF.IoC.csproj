@@ -68,7 +68,6 @@
     <Compile Include="Attributes\Attributes.cs" />
     <Compile Include="Attributes\CreateNewAttribute.cs" />
     <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
-    <Compile Include="InvokerFactory.cs" />
     <Compile Include="ComponentDescriptor.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Interfaces\IInvoker.cs" />

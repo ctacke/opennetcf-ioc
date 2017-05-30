@@ -54,6 +54,7 @@ namespace OpenNETCF.IoC
     public enum ThreadOption
     {
         Caller,
+        [Obsolete("ThreadOption.UserInterface is no longer supported.", true)]
         UserInterface
     }
 

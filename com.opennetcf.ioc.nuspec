@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>com.opennetcf.ioc.ffx</id>
-        <version>1.0.17146.1</version>
+        <version>1.0.17150.0</version>
         <title>OpenNETCF Inversion of Control (IoC)</title>
         <authors>Chris Tacke</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -17,8 +17,6 @@
     <files>
         <!-- .NET 4.0 and later -->
         <file src=".\bin\Full\Release\OpenNETCF.IoC.dll" target="lib\net45" />
-        <file src=".\bin\Full\Release\OpenNETCF.IoC.Invoker.FFx.dll" target="lib\net45" />
-        <file src=".\bin\Full\Release\OpenNETCF.IoC.Invoker.Mono.dll" target="lib\net45" />
 
     </files>
 </package>

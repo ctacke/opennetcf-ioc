@@ -51,7 +51,7 @@ namespace OpenNETCF.IoC.UI
             m_tabs.ImageList = m_tabImages;
 #endif
             this.Controls.Add(m_tabs);
-            m_tabs.Dock = DockStyle.Fill;
+            m_tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             m_tabs.SelectedIndexChanged += new EventHandler(m_tabs_SelectedIndexChanged);
 
             DesktopSetup();
@@ -217,7 +217,7 @@ namespace OpenNETCF.IoC.UI
                     var ctl = smartPart as Control;
                     if (ctl != null)
                     {
-                        ctl.Dock = DockStyle.Fill;
+                        ctl.Dock = System.Windows.Forms.DockStyle.Fill;
                     }
                     page.ClientRectangle.Inflate(-2, -2);
                     page.Controls.Add((Control)smartPart);

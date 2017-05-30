@@ -178,7 +178,6 @@ namespace OpenNETCF.IoC
             {
                 return (from e in m_subscriptionDescriptorCache[type]
                         where e.Subscription.EventName == eventName
-                        && e.Subscription.ThreadOption == option
                         select e.MethodInfo).ToArray();
             }
             else
@@ -187,7 +186,6 @@ namespace OpenNETCF.IoC
                         where
                     (from a in e.GetCustomAttributes(typeof(EventSubscription), true) as EventSubscription[]
                      where a.EventName == eventName
-                     && a.ThreadOption == option
                      select a).Count() > 0
                             select e).ToArray();
             }
@@ -206,13 +204,6 @@ namespace OpenNETCF.IoC
         private static void AddCollectionEventHandlers<TKey, TItem>(object instance, IEnumerable<KeyValuePair<TKey, TItem>> collection, PublicationDescriptor[] sourceEvents, SubscriptionDescriptor[] eventSinks, List<object> workingList)
         {
             if (collection == null) return;
-
-            var invokerControl = RootWorkItem.Items.Get<object>(Constants.EventInvokerName);
-            if(invokerControl == null)
-            {
-                invokerControl = InvokerFactory.GetInvokerObject();
-                RootWorkItem.Items.Add(invokerControl, Constants.EventInvokerName);
-            }
 
             foreach (var item in collection.ToList())
             {
@@ -236,33 +227,6 @@ namespace OpenNETCF.IoC
                         Delegate d = Delegate.CreateDelegate(source.EventInfo.EventHandlerType, item.Value, sink);
                         source.EventInfo.AddEventHandler(instance, d);
                     }
-
-                    var sinks = GetEventSinksFromTypeByName(item.Value.GetType(), source.Publication.EventName, ThreadOption.UserInterface);
-                    foreach (var sink in sinks)
-                    {
-                        // prevent double-hooking events on items that occur in multiple collections (e.g. Items and Workspaces)
-                        if (workingList.Contains(sink)) continue;
-                        workingList.Add(sink);
-
-                        // wire up event handlers on the UI thread
-                        Delegate d = Delegate.CreateDelegate(source.EventInfo.EventHandlerType, item.Value, sink);
-
-                        if (source.EventInfo.EventHandlerType == typeof(EventHandler))
-                        {
-                            // unsure why so far but this fails if the EventHandler signature takes a subclass of EventArgs as the second param
-                            // and if you use just EventArgs, the arg data gets lost
-                            var invoker = InvokerFactory.GetInvoker(invokerControl, d);
-                            Delegate intermediate = Delegate.CreateDelegate(source.EventInfo.EventHandlerType, invoker, invoker.HandlerMethod);
-                            source.EventInfo.AddEventHandler(instance, intermediate);
-                        }
-                        else if ((source.EventInfo.EventHandlerType.IsGenericType) && (source.EventInfo.EventHandlerType.GetGenericTypeDefinition().Name == "EventHandler`1"))
-                        {
-                            var invoker = InvokerFactory.GetInvoker(invokerControl, d);
-                            Delegate intermediate = Delegate.CreateDelegate(source.EventInfo.EventHandlerType, invoker, invoker.HandlerMethod);
-                            source.EventInfo.AddEventHandler(instance, intermediate);
-                        }
-
-                    }
                 }
 
                 // back-wire any sinks
@@ -274,30 +238,7 @@ namespace OpenNETCF.IoC
                         {
                             // (type, consumer instance, consumer method)
                             Delegate d = Delegate.CreateDelegate(ei.EventHandlerType, instance, sink.MethodInfo);
-
-                            if (sink.Subscription.ThreadOption == ThreadOption.Caller)
-                            {
-                                ei.AddEventHandler(item.Value, d);
-                            }
-                            else
-                            {
-                                // wire up event handlers on the UI thread
-                                if ((ei.EventHandlerType.IsGenericType) && (ei.EventHandlerType.GetGenericTypeDefinition().Name == "EventHandler`1")
-                                    || (ei.EventHandlerType == typeof(EventHandler))
-                                    )
-                                {
-                                    // unsure why so far but this fails if the EventHandler signature takes a subclass of EventArgs as the second param
-                                    // and if you use just EventArgs, the arg data gets lost
-                                
-                                    var invoker = InvokerFactory.GetInvoker(invokerControl, d);
-                                    Delegate intermediate = Delegate.CreateDelegate(ei.EventHandlerType, invoker, invoker.HandlerMethod);
-                                    ei.AddEventHandler(item.Value, intermediate);
-                                }
-                                else
-                                {
-                                    throw new ArgumentException("ThreadOption.UserInterface only supported for EventHandler and EventHandler<T> events");
-                                }
-                            }
+                            ei.AddEventHandler(item.Value, d);
                         }
                         catch (ArgumentException)
                         {

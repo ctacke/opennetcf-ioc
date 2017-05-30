@@ -19,7 +19,7 @@ namespace IoC.Unit.Test
     {
         public bool EventReceived { get; set; }
 
-        [EventSubscription("TestEvent", ThreadOption.UserInterface)]
+        [EventSubscription("TestEvent", ThreadOption.Caller)]
         public void Publisher_OnEvent(object sender, EventArgs e)
         {
             EventReceived = true;

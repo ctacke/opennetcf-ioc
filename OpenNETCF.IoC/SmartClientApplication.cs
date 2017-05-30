@@ -29,9 +29,6 @@ namespace OpenNETCF.IoC
 
         public virtual void Start(IModuleInfoStore store)
         {
-            var invoker = InvokerFactory.GetInvokerObject();
-            RootWorkItem.Items.Add(invoker, Constants.EventInvokerName);
-
             ModuleInfoStoreService storeService = RootWorkItem.Services.AddNew<ModuleInfoStoreService>();
 
             AddServices();
