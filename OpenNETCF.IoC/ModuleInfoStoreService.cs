@@ -120,8 +120,12 @@ namespace OpenNETCF.IoC
             {
             foreach (var m in m_loadedModules)
             {
-                var loadComplete = ((ModuleInfo)m).Instance.GetType().GetMethod("OnContainerLoadComplete", BindingFlags.Public | BindingFlags.Instance);
-                if (loadComplete != null)
+#if NETSTANDARD1_3
+                    var loadComplete = ((ModuleInfo)m).Instance.GetType().GetRuntimeMethod("OnContainerLoadComplete", null);
+#else
+                    var loadComplete = ((ModuleInfo)m).Instance.GetType().GetMethod("OnContainerLoadComplete", BindingFlags.Public | BindingFlags.Instance);
+#endif
+                    if (loadComplete != null)
                 {
                     try
                     {
@@ -141,10 +145,13 @@ namespace OpenNETCF.IoC
             Type imodule;
 
             // see if we have an explicitly defined entry
+#if NETSTANDARD1_3
+            var attrib = assembly.GetCustomAttributes<IoCModuleEntryAttribute>().FirstOrDefault();
+#else
             var attrib = (from a in assembly.GetCustomAttributes(true)
                           where a is IoCModuleEntryAttribute
                           select a as IoCModuleEntryAttribute).FirstOrDefault();
-
+#endif
             if (attrib != null)
             {
                 if (!(attrib.EntryType is IModule))
@@ -162,14 +169,18 @@ namespace OpenNETCF.IoC
                 // under CF and FFX this appears negligible
                 try
                 {
+#if NETSTANDARD1_3
+                    imodule = assembly.ExportedTypes.First(t => t.Equals(typeof(IModule)));
+#else
                     imodule = (from t in assembly.GetTypes()
                                where t.GetInterfaces().Count(i => i.Equals(typeof(IModule))) > 0
                                select t).FirstOrDefault(m => !m.IsAbstract);
+#endif
                 }
 #if !WindowsCE
                 catch (ReflectionTypeLoadException ex)
                 {
-                    Trace.WriteLine(string.Format("IoC: Exception loading assembly '{0}': {1}", assembly.FullName, ex.Message), Constants.TraceCategoryName);
+                    Debug.WriteLine(string.Format("IoC: Exception loading assembly '{0}': {1}", assembly.FullName, ex.Message), Constants.TraceCategoryName);
 
                     throw;
                 }
@@ -189,7 +200,7 @@ namespace OpenNETCF.IoC
         internal ModuleInfo LoadAssembly(Assembly assembly)
         {
             var assemblyName = assembly.GetName();
-            Trace.WriteLine(string.Format("IoC: Loading assembly '{0}'", assemblyName), Constants.TraceCategoryName);
+            Debug.WriteLine(string.Format("IoC: Loading assembly '{0}'", assemblyName), Constants.TraceCategoryName);
 
             Type imodule = FindIModuleType(assembly);
             if (imodule == null) return null;
@@ -208,7 +219,11 @@ namespace OpenNETCF.IoC
                 m_loadedModules.Add(info);
             }
 
+#if NETSTANDARD1_3
+            var loadMethod = imodule.GetRuntimeMethod("Load", null);
+#else
             var loadMethod = imodule.GetMethod("Load", BindingFlags.Public | BindingFlags.Instance);
+#endif
             if (loadMethod != null)
             {
                 try
@@ -280,12 +295,20 @@ namespace OpenNETCF.IoC
                     if (fi.Exists)
                     {
                         // local?
+#if NETSTANDARD1_3
+                        asm = Assembly.Load(new AssemblyName(fi.FullName));
+#else
                         asm = Assembly.LoadFrom(fi.FullName);
+#endif
                     }
                     else if (File.Exists(s))
                     {
                         // fully qualified path?
+#if NETSTANDARD1_3
+                        asm = Assembly.Load(new AssemblyName(s));
+#else
                         asm = Assembly.LoadFrom(s);
+#endif
                     }
                     else if (Environment.OSVersion.Platform != PlatformID.Unix  && File.Exists(Path.Combine("\\Windows", s)))
                     {
@@ -306,7 +329,7 @@ namespace OpenNETCF.IoC
                 }
                 catch (Exception ex)
                 {
-                    Trace.WriteLine(string.Format("Exception loading assembly '{0}': {1}", asm.FullName, ex.Message));
+                    Debug.WriteLine(string.Format("Exception loading assembly '{0}': {1}", asm.FullName, ex.Message));
                 }
             }
         }

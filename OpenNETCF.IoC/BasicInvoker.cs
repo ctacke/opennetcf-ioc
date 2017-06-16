@@ -102,7 +102,11 @@ namespace OpenNETCF.IoC
             {
                 if (m_methodInfo == null)
                 {
+#if NETSTANDARD1_3
+                    m_methodInfo = this.GetType().GetRuntimeMethod("Handler", null);
+#else
                     m_methodInfo = this.GetType().GetMethod("Handler", BindingFlags.Public | BindingFlags.Instance);
+#endif
                 }
 
                 return m_methodInfo;

@@ -47,7 +47,6 @@ namespace OpenNETCF.IoC
             {
                 if (!File.Exists(m_catalogFilePath))
                 {
-                    Trace.WriteLine(string.Format("IoC: Catalog file '{0}' not found", m_catalogFilePath), Constants.TraceCategoryName);
                     return null;
 
                 }
@@ -58,7 +57,6 @@ namespace OpenNETCF.IoC
             }
             catch(Exception ex)
             {
-                Trace.WriteLine(string.Format("IoC.DefaultModuleInfoStore: GetModuleListXml exception: '{0}'", ex.Message), Constants.TraceCategoryName);
                 return null;
             }
         }

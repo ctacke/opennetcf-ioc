@@ -64,7 +64,6 @@ namespace OpenNETCF.IoC
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(string.Format("IoC.ResourceModuleInfoStore: GetModuleListXml exception: '{0}'", ex.Message), Constants.TraceCategoryName);
                 return null;
             }
         }

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2FEFCB7-D29F-47AD-BFE4-9DC02FEABF5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenNETCF.IoC</RootNamespace>
+    <AssemblyName>OpenNETCF.IoC</AssemblyName>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <PackageTargetFallback>portable-net45+win8+wpa81+wp8</PackageTargetFallback>
+    <DebugType>full</DebugType>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>15.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.17166.0</AssemblyVersion>
+    <FileVersion>1.0.17166.0</FileVersion>
+    <Version>1.0.17166</Version>
+    <Authors>Chris Tacke</Authors>
+    <Company>Tacke Consulting</Company>
+    <Description>A .NET Standard Dependency Injection /Inversion of Control (DI/IoC) library, based loosely on the old Microsoft SCSF/CAB Frameworks</Description>
+    <PackageId>opennetcf-ioc-standard</PackageId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\PCL\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PCL;NETSTANDARD1_3;NO_WINFORMS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Standard\Release\netstandard1.3\</OutputPath>
+    <DefineConstants>TRACE;PCL;NO_WINFORMS;RELEASE;NETSTANDARD1_3;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Attributes\Attributes.cs" />
+    <Compile Remove="BasicInvoker.cs" />
+    <Compile Remove="DefaultModuleInfoStore.cs" />
+    <Compile Remove="Interfaces\IInvoker.cs" />
+    <Compile Remove="Interfaces\IModule.cs" />
+    <Compile Remove="Interfaces\IModuleInfo.cs" />
+    <Compile Remove="Interfaces\IModuleInfoStore.cs" />
+    <Compile Remove="Interfaces\ISmartPart.cs" />
+    <Compile Remove="Interfaces\ISmartPartCollection.cs" />
+    <Compile Remove="Interfaces\ISmartPartInfo.cs" />
+    <Compile Remove="Interfaces\IWorkspace.cs" />
+    <Compile Remove="IoCLocalDevice.cs" />
+    <Compile Remove="ModuleCollection.cs" />
+    <Compile Remove="ModuleInfo.cs" />
+    <Compile Remove="ModuleInfoStoreService.cs" />
+    <Compile Remove="ModuleInit.cs" />
+    <Compile Remove="ObjectFactory.cs" />
+    <Compile Remove="ResourceModuleInfoStore.cs" />
+    <Compile Remove="SmartClientApplication.cs" />
+    <Compile Remove="WorkItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="opennetcf-extensions-standard" Version="1.0.17160" />
+  </ItemGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
