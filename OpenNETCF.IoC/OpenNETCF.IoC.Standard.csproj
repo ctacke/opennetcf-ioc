@@ -34,9 +34,9 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.17166.0</AssemblyVersion>
-    <FileVersion>1.0.17166.0</FileVersion>
-    <Version>1.0.17166</Version>
+    <AssemblyVersion>1.0.17213.0</AssemblyVersion>
+    <FileVersion>1.0.17213.0</FileVersion>
+    <Version>1.0.17213</Version>
     <Authors>Chris Tacke</Authors>
     <Company>Tacke Consulting</Company>
     <Description>A .NET Standard Dependency Injection /Inversion of Control (DI/IoC) library, based loosely on the old Microsoft SCSF/CAB Frameworks</Description>
@@ -77,12 +77,15 @@
     <Compile Remove="ModuleInfoStoreService.cs" />
     <Compile Remove="ModuleInit.cs" />
     <Compile Remove="ObjectFactory.cs" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
     <Compile Remove="ResourceModuleInfoStore.cs" />
     <Compile Remove="SmartClientApplication.cs" />
     <Compile Remove="WorkItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="packages.config" />
+    <None Remove="project.json" />
+    <None Remove="project.lock.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -92,6 +95,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Properties\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

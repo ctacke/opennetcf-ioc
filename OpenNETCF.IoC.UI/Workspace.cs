@@ -72,7 +72,7 @@ namespace OpenNETCF.IoC.UI
         {
             if (smartPart == null) throw new ArgumentNullException("smartPart");
 
-            this.BeginInvokeIfRequired(d =>
+            this.BeginInvokeIfRequired(() =>
                 {
                     OnShow(smartPart, smartPartInfo);
                 });
@@ -86,7 +86,7 @@ namespace OpenNETCF.IoC.UI
         {
             if (smartPart == null) throw new ArgumentNullException("smartPart");
 
-            this.InvokeIfRequired(d =>
+            this.InvokeIfRequired(() =>
                 {
                     var control = smartPart as Control;
                     if (control == null) throw new ArgumentException("smartPart must be a Control");
@@ -134,7 +134,7 @@ namespace OpenNETCF.IoC.UI
 
             CheckSmartPartExists(smartPart);
 
-            this.InvokeIfRequired(d =>
+            this.InvokeIfRequired(() =>
                 {
                     OnHide(smartPart);
 
@@ -155,7 +155,7 @@ namespace OpenNETCF.IoC.UI
 
             CheckSmartPartExists(smartPart);
 
-            this.InvokeIfRequired(d =>
+            this.InvokeIfRequired(() =>
                 {
                     OnClose(smartPart);
                 });
@@ -202,7 +202,7 @@ namespace OpenNETCF.IoC.UI
         {
             if (smartPart == null) throw new ArgumentNullException("smartPart");
 
-            this.InvokeIfRequired(d =>
+            this.InvokeIfRequired(() =>
                 {
                     AddSmartPartToCollectionIfRequired(smartPart);
 
@@ -239,7 +239,7 @@ namespace OpenNETCF.IoC.UI
         {
             if (smartPart == null) throw new ArgumentNullException("smartPart");
 
-            this.InvokeIfRequired(d =>
+            this.InvokeIfRequired(() =>
                 {
                     CheckSmartPartExists(smartPart);
 

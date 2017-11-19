@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>com.opennetcf.ioc.ui</id>
+        <id>com.opennetcf.ioc.ffx</id>
         <version>1.0.17323.0</version>
         <title>OpenNETCF Inversion of Control (IoC)</title>
         <authors>Chris Tacke</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Desktop MVC UI framework bits for OpenNETCF's Inversion of Control library, based loosely on the old Microsoft SCSF/CAB Frameworks</description>
+        <description>OpenNETCF's Inversion of Control library, based loosely on the old Microsoft SCSF/CAB Frameworks</description>
 
     <dependencies>
       <group>
         <dependency id="opennetcf-extensions-standard" version="1.0.17160"/>
-        <dependency id="com.opennetcf.ioc.ffx" version="1.0.17323"/>
       </group>
     </dependencies>
     </metadata>
     <files>
         <!-- .NET 4.0 and later -->
-        <file src=".\bin\Full\Release\OpenNETCF.IoC.UI.dll" target="lib\net46" />
+        <file src=".\bin\Full\Release\OpenNETCF.IoC.dll" target="lib\net46" />
+
     </files>
 </package>

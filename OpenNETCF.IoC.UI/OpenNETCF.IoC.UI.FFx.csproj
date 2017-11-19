@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenNETCF.IoC.UI</RootNamespace>
     <AssemblyName>OpenNETCF.IoC.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -48,13 +48,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenNETCF.Extensions, Version=1.0.17139.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\com.opennetcf.extensions.pcl.1.0.17139.0\lib\portable45-net45+win8+wpa81\OpenNETCF.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OpenNETCF.Extensions.FFx, Version=1.0.17139.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\com.opennetcf.extensions.ffx.1.0.17139.0\lib\net45\OpenNETCF.Extensions.FFx.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="OpenNETCF.Extensions, Version=1.0.17160.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\opennetcf-extensions-standard.1.0.17160.0\lib\netstandard1.1\OpenNETCF.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -76,6 +71,7 @@
     <Compile Include="..\Shared\OpenNETCF.IoC.Version.cs">
       <Link>Properties\OpenNETCF.IoC.Version.cs</Link>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="GestureDirection.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="DeckWorkspace.cs">
@@ -105,13 +101,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenNETCF.IoC\OpenNETCF.IoC.csproj">
-      <Project>{aad0d35c-626c-4777-95d6-dbacebd3b5c9}</Project>
-      <Name>OpenNETCF.IoC</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\OpenNETCF.IoC\OpenNETCF.IoC.FFx.csproj">
+      <Project>{607c9879-ad89-406f-b48c-d1fd34537c74}</Project>
+      <Name>OpenNETCF.IoC.FFx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

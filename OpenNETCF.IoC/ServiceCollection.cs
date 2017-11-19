@@ -135,7 +135,7 @@ namespace OpenNETCF.IoC
             Type t = typeof(TService);
             Add(null, null, t, typeof(TRegisterAs));
         }
-
+        
         public void Add<TService>(object serviceInstance)
             where TService : class
         {

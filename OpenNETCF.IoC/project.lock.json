@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6": {},
+    ".NETFramework,Version=v4.6/win": {},
+    ".NETFramework,Version=v4.6/win10-x64": {},
+    ".NETFramework,Version=v4.6/win10-x86": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "": [],
+    ".NETFramework,Version=v4.6": []
+  },
+  "packageFolders": {
+    "C:\\Users\\ctacke\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "restore": {
+      "projectUniqueName": "C:\\Repos\\OpenNETCF\\ioc\\OpenNETCF.IoC\\OpenNETCF.IoC.FFx.csproj",
+      "projectName": "OpenNETCF.IoC.FFx",
+      "projectPath": "C:\\Repos\\OpenNETCF\\ioc\\OpenNETCF.IoC\\OpenNETCF.IoC.FFx.csproj",
+      "projectJsonPath": "C:\\Repos\\OpenNETCF\\ioc\\OpenNETCF.IoC\\project.json",
+      "packagesPath": "C:\\Users\\ctacke\\.nuget\\packages\\",
+      "outputPath": "C:\\Repos\\OpenNETCF\\ioc\\OpenNETCF.IoC\\obj\\",
+      "projectStyle": "ProjectJson",
+      "configFilePaths": [
+        "C:\\Users\\ctacke\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      }
+    },
+    "frameworks": {
+      "net46": {}
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win10-x64": {
+        "#import": []
+      },
+      "win10-x86": {
+        "#import": []
+      }
+    }
+  }
+}

@@ -10,6 +10,8 @@
 // submissions of changes, fixes or updates are welcomed but not required
 //
 
+using System;
+
 namespace OpenNETCF.IoC
 {
     public static class ExtensionMethods
@@ -36,6 +38,49 @@ namespace OpenNETCF.IoC
             var service = collection.Get<TService>();
             if (service != null) return service;
             return collection.AddNew<TService>();
+        }
+
+        public static void AddIfMissing<TService>(this ServiceCollection collection, TService serviceInstance)
+            where TService : class
+        {
+            var service = collection.Get<TService>();
+            if (service != null)
+            {
+                collection.Add<TService>(serviceInstance);
+            }
+        }
+
+        public static void AddIfMissing(this ServiceCollection collection, Type registerAs, object serviceInstance)
+        {
+            var service = collection.Get(registerAs);
+            if (service != null)
+            {
+                collection.Add(registerAs, serviceInstance);
+            }
+        }
+
+        public static TService AddNewIfMissing<TService>(this ServiceCollection collection)
+            where TService : class
+        {
+            var service = collection.Get<TService>();
+            if (service != null)
+            {
+                return service;
+            }
+
+            return collection.AddNew<TService>();
+        }
+
+        public static TService AddNewIfMissing<TService, TRegisterAs>(this ServiceCollection collection)
+            where TRegisterAs : class
+            where TService : class, TRegisterAs
+        {
+            var service = collection.Get<TService>();
+            if (service != null)
+            {
+                return service;
+            }
+            return collection.AddNew<TService, TRegisterAs>();
         }
     }
 }

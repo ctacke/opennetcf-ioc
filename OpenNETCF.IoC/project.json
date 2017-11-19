@@ -1,0 +1,10 @@
+﻿{
+    "runtimes": {
+        "win": {},
+        "win10-x64": {},
+        "win10-x86": {}
+    },
+    "frameworks": {
+        "net46": {}
+    }
+}
