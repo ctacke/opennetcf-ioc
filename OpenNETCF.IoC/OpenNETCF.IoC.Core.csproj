@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DefineConstants>TRACE;NO_WINFORMS</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DefineConstants>TRACE;NO_WINFORMS</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+      <Compile Remove="ObjectFactory.PCL.cs" />
+      <Compile Remove="WorkItem.PCL.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="packages.config" />
+      <None Remove="project.json" />
+      <None Remove="project.lock.json" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="opennetcf-extensions-standard" Version="1.0.19330" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
